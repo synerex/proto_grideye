@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package grideye;
+
+option go_package="github.com/synerex/proto_grideye";
+
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+// GridEye Service message
+message GridEye
+{   string device_id = 1;
+    string hostname = 2;
+    string location = 3;
+    string mac = 4;
+    string ip = 5;
+    uint64 seq = 6;   // sequence number
+    google.protobuf.Timestamp ts = 7;
+    repeated GridEyeEvent data = 8;   // message has several event data.
+}
+
+message GridEyeEvent 
+{
+    string typ = 1;  // one of "sensor", "keepAlive", etc.
+    string id = 2;
+    uint64 seq = 3;   // sequence number (onr)
+    google.protobuf.Timestamp ts = 4;
+    repeated float temps = 5;
+}
+
+message GridEyes
+{
+    repeated GridEye messages = 1; // multiple counter data for first transfer
+}
+
+message Retrieve
+{
+    google.protobuf.Timestamp from = 1;
+    google.protobuf.Duration duration = 2;
+    GridEyes result = 3;
+}
