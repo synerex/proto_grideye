@@ -26,7 +26,7 @@ message GridEyeEvent
     string id = 2;
     uint64 seq = 3;   // sequence number (onr)
     google.protobuf.Timestamp ts = 4;
-    repeated float temps = 5;
+    repeated double temps = 5;
 }
 
 message GridEyes
