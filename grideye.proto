@@ -9,24 +9,24 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
 // GridEye Service message
-message GridEye
-{   string device_id = 1;
-    string hostname = 2;
-    string location = 3;
-    string mac = 4;
-    string ip = 5;
-    uint64 seq = 6;   // sequence number
+message GridEye  // per Raspberry Pi Data Message
+{   string device_id = 1;  // not used
+    string hostname = 2;   // of Raspberry Pi
+    string location = 3;   // of Raspberry Pi
+    string mac = 4;        // of Raspberry Pi
+    string ip = 5;         // of Raspberry Pi
+    uint64 seq = 6;        // sequence number
     google.protobuf.Timestamp ts = 7;
     repeated GridEyeEvent data = 8;   // message has several event data.
 }
 
 message GridEyeEvent 
 {
-    string typ = 1;  // one of "sensor", "keepAlive", etc.
-    string id = 2;
-    uint64 seq = 3;   // sequence number (onr)
+    string typ = 1;   // one of "sensor", "keepAlive", etc.
+    string id = 2;    // of Grid Eye Sensor
+    uint64 seq = 3;   // sequence number
     google.protobuf.Timestamp ts = 4;
-    repeated double temps = 5;
+    repeated double temps = 5;  // Sensed Data by Grid Eye
 }
 
 message GridEyes
@@ -34,7 +34,7 @@ message GridEyes
     repeated GridEye messages = 1; // multiple counter data for first transfer
 }
 
-message Retrieve
+message Retrieve  // Request & Response of Data Retrieve
 {
     google.protobuf.Timestamp from = 1;
     google.protobuf.Duration duration = 2;
