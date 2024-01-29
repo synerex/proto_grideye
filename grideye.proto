@@ -27,6 +27,7 @@ message GridEyeEvent
     uint64 seq = 3;   // sequence number
     google.protobuf.Timestamp ts = 4;
     repeated double temps = 5;  // Sensed Data by Grid Eye
+    repeated uint32 audioSpectrum = 6;  // Sensed Data by Microphone
 }
 
 message GridEyes
